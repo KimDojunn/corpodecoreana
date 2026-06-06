@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consultoria Corpo de Coreana — Kim Dojun</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #E8F2E8;
+    --sage-light: #F4F9F4;
+    --forest: #2C4A2E;
+    --forest-mid: #3D6B40;
+    --gold: #B8A44C;
+    --gold-light: #E8DDB0;
+    --gold-pale: #F5F0DD;
+    --dark: #1A3A1C;
+    --mid: #4A6B4A;
+    --muted: #7A9A7A;
+    --border: #A8C8A8;
+    --border-light: #C8DEC8;
+    --red: #A03030;
+    --green-ok: #2C5F2E;
+    --green-ok-light: #D8EDD8;
+    --white: #fff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--sage-light);
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 100%);
+    padding: 32px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(184,164,76,0.12), transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(184,164,76,0.08), transparent 60%);
+  }
+  .header-inner { position: relative; z-index: 1; }
+  .header-tag {
+    display: inline-block;
+    border: 1px solid rgba(184,212,176,0.4);
+    background: rgba(184,212,176,0.15);
+    color: #B8D4B0;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 18px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .header h1 em { color: #B8D4B0; }
+  .header p {
+    color: rgba(184,212,176,0.75);
+    font-size: 14px;
+    font-weight: 300;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+
+  .intro-box {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin: 28px 0;
+    font-size: 14px;
+    color: var(--mid);
+    line-height: 1.7;
+  }
+  .intro-box strong { color: var(--forest); }
+
+  .bloco {
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    border-radius: 14px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .bloco-header {
+    background: var(--forest);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .bloco-num {
+    width: 30px; height: 30px;
+    background: rgba(184,212,176,0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    color: #B8D4B0;
+    flex-shrink: 0;
+  }
+  .bloco-titulo {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+  }
+  .bloco-body { padding: 24px; }
+
+  .campo { margin-bottom: 22px; }
+  .campo:last-child { margin-bottom: 0; }
+
+  .campo label {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--dark);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .campo label .obr {
+    color: var(--red);
+    font-size: 12px;
+    margin-left: 4px;
+  }
+  .campo .desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-style: italic;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--dark);
+    background: var(--sage-light);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  input:focus, textarea:focus {
+    border-color: var(--forest);
+    box-shadow: 0 0 0 3px rgba(44,74,46,0.08);
+  }
+  textarea { min-height: 90px; resize: vertical; }
+
+  .radio-group, .check-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .radio-item, .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border-light);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+    color: var(--dark);
+    background: var(--white);
+  }
+  .radio-item:hover, .check-item:hover {
+    border-color: var(--forest);
+    background: var(--sage-light);
+  }
+  .radio-item input, .check-item input {
+    margin-top: 2px;
+    accent-color: var(--forest);
+    width: 16px; height: 16px;
+    flex-shrink: 0;
+  }
+
+  .submit-section {
+    text-align: center;
+    margin-top: 36px;
+  }
+  .submit-btn {
+    background: linear-gradient(135deg, var(--forest), var(--forest-mid));
+    color: #fff;
+    border: none;
+    padding: 16px 60px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .submit-btn:hover { opacity: 0.9; }
+  .submit-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+
+  .footer {
+    background: var(--forest);
+    text-align: center;
+    padding: 18px 20px;
+    color: #B8D4B0;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+
+  .sucesso {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .sucesso h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--forest);
+    margin-bottom: 14px;
+  }
+  .sucesso p {
+    font-size: 15px;
+    color: var(--mid);
+    line-height: 1.7;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 26px; }
+    .bloco-body { padding: 18px; }
+    .submit-btn { width: 100%; padding: 16px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-tag">Consultoria Personalizada</div>
+    <h1>Corpo de <em>Coreana</em></h1>
+    <p>Responda com calma. Cada resposta ajuda o Kim Dojun a criar o seu plano personalizado de emagrecimento.</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="intro-box">
+    <strong>🌿 Como funciona:</strong> responda as perguntas abaixo (leva cerca de 10 minutos). Em até <strong>72 horas</strong> você receberá no seu e-mail um PDF com o seu nome na capa — com cardápio, hábitos, chás e plano de 30 dias criados exclusivamente para o seu caso.
+  </div>
+
+  <!-- TROCAR O ACTION PELO SEU ENDPOINT FORMSPREE -->
+  <form id="formConsultoria" action="https://formspree.io/f/SEU_ENDPOINT_AQUI" method="POST">
+
+    <!-- BLOCO 1 -->
+    <div class="bloco">
+      <div class="bloco-header">
+        <div class="bloco-num">1</div>
+        <div class="bloco-titulo">Identificação</div>
+      </div>
+      <div class="bloco-body">
+        <div class="campo">
+          <label>Qual é o seu nome completo?<span class="obr">*</span></label>
+          <input type="text" name="nome" required>
+        </div>
+        <div class="campo">
+          <label>Qual é o seu e-mail?<span class="obr">*</span></label>
+          <input type="email" name="email" required>
+        </div>
+        <div class="campo">
+          <label>Qual é a sua idade?<span class="obr">*</span></label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="idade" value="40-49" required> 40-49 anos</label>
+            <label class="radio-item"><input type="radio" name="idade" value="50-54"> 50-54 anos</label>
+            <label class="radio-item"><input type="radio" name="idade" value="55-59"> 55-59 anos</label>
+            <label class="radio-item"><input type="radio" name="idade" value="60-64"> 60-64 anos</label>
+            <label class="radio-item"><input type="radio" name="idade" value="65-69"> 65-69 anos</label>
+            <label class="radio-item"><input type="radio" name="idade" value="70+"> 70+</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO 2 -->
+    <div class="bloco">
+      <div class="bloco-header">
+        <div class="bloco-num">2</div>
+        <div class="bloco-titulo">Corpo e Peso</div>
+      </div>
+      <div class="bloco-body">
+        <div class="campo">
+          <label>Qual é o seu peso atual (aproximado)?<span class="obr">*</span></label>
+          <div class="desc">Ex: 75kg</div>
+          <input type="text" name="peso" required>
+        </div>
+        <div class="campo">
+          <label>Qual é a sua altura?<span class="obr">*</span></label>
+          <div class="desc">Ex: 1,60m</div>
+          <input type="text" name="altura" required>
+        </div>
+        <div class="campo">
+          <label>Onde você sente que acumula mais gordura?<span class="obr">*</span></label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="gordura_local" value="barriga-cintura" required> Barriga e cintura</label>
+            <label class="radio-item"><input type="radio" name="gordura_local" value="quadril-coxas"> Quadril e coxas</label>
+            <label class="radio-item"><input type="radio" name="gordura_local" value="bracos"> Braços</label>
+            <label class="radio-item"><input type="radio" name="gordura_local" value="corpo-inteiro"> Corpo inteiro de forma uniforme</label>
+            <label class="radio-item"><input type="radio" name="gordura_local" value="costas-lombar"> Costas e região lombar</label>
+          </div>
+        </div>
+        <div class="campo">
+          <label>Nos últimos 2 anos, seu peso:<span class="obr">*</span></label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="peso_historico" value="aumentou-muito" required> Aumentou bastante (mais de 8kg)</label>
+            <label class="radio-item"><input type="radio" name="peso_historico" value="aumentou-pouco"> Aumentou um pouco (3-7kg)</label>
+            <label class="radio-item"><input type="radio" name="peso_historico" value="estavel"> Ficou mais ou menos estável</label>
+            <label class="radio-item"><input type="radio" name="peso_historico" value="oscila"> Oscila muito (engorda e emagrece)</label>
+            <label class="radio-item"><input type="radio" name="peso_historico" value="diminuiu"> Diminuiu</label>
+          </div>
+        </div>
+        <div class="campo">
+          <label>Você já tentou emagrecer antes? O que fez e por que não funcionou?</label>
+          <textarea name="tentativas_anteriores" placeholder="Conte o que já tentou — dietas, remédios, exercícios..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO 3 -->
+    <div class="bloco">
+      <div class="bloco-header">
+        <div class="bloco-num">3</div>
+        <div class="bloco-titulo">Alimentação Atual</div>
+      </div>
+      <div class="bloco-body">
+        <div class="campo">
+          <label>Como você descreveria sua alimentação hoje?<span class="obr">*</span></label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="alimentacao" value="sem-controle" required> Como de tudo sem controle</label>
+            <label class="radio-item"><input type="radio" name="alimentacao" value="tento-nao-consigo"> Tento comer bem mas não consigo manter</label>
+            <label class="radio-item"><input type="radio" name="alimentacao" value="razoavel"> Como razoavelmente bem no geral</label>
+            <label class="radio-item"><input type="radio" name="alimentacao" value="restritiva"> Faço dieta restritiva</label>
+            <label class="radio-item"><input type="radio" name="alimentacao" value="perdida"> Não sei o que comer direito</label>
+          </div>
+        </div>
+        <div class="campo">
+          <label>Quantas refeições faz por dia?<span class="obr">*</span></label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="refeicoes" value="1-2" required> 1-2 refeições</label>
+            <label class="radio-item"><input type="radio" name="refeicoes" value="3"> 3 refeições</label>
+            <label class="radio-item"><input type="radio" name="refeicoes" value="3-lanches"> 3 refeições + lanches</label>
+            <label class="radio-item"><input type="radio" name="refeicoes" value="sem-horario"> Como o dia todo sem horário fixo</label>
+            <label class="radio-item"><input type="radio" name="refeicoes" value="pula"> Pulo refeições com frequência</label>
+          </div>
+        </div>
+        <div class="campo">
+          <label>Qual é a sua maior dificuldade com alimentação?<span class="obr">*</span></label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="dificuldade" value="doce" required> Comer doce (compulsão por açúcar)</label>
+            <label class="radio-item"><input type="radio" name="dificuldade" value="quantidade"> Comer demais nas refeições</label>
+            <label class="radio-item"><input type="radio" name="dificuldade" value="beliscar"> Beliscar entre as refeições</label>
+            <label class="radio-item"><input type="radio" name="dificuldade" value="emocional"> Comer por ansiedade ou tristeza</label>
+            <label class="radio-item"><input type="radio" name="dificuldade" value="nao-sabe"> Não saber o que comer</label>
+            <label class="radio-item"><input type="radio" name="dificuldade" value="tempo"> Falta de tempo para preparar</label>
+          </div>
+        </div>
+        <div class="campo">
+          <label>Você bebe álcool com que frequência?</label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="alcool" value="nunca"> Nunca ou raramente</label>
+            <label class="radio-item"><input type="radio" name="alcool" value="1-2x"> 1-2x por semana</label>
+            <label class="radio-item"><input type="radio" name="alcool" value="3-5x"> 3-5x por semana</label>
+            <label class="radio-item"><input type="radio" name="alcool" value="diario"> Todo dia</label>
+          </div>
+        </div>
+        <div class="campo">
+          <label>Quanta água você bebe por dia?</label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="agua" value="menos-1L"> Menos de 1 litro</label>
+            <label class="radio-item"><input type="radio" name="agua" value="1-1.5L"> 1 a 1,5 litros</label>
+            <label class="radio-item"><input type="radio" name="agua" value="1.5-2L"> 1,5 a 2 litros</label>
+            <label class="radio-item"><input type="radio" name="agua" value="mais-2L"> Mais de 2 litros</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO 4 -->
+    <div class="bloco">
+      <div class="bloco-header">
+        <div class="bloco-num">4</div>
+        <div class="bloco-titulo">Saúde e Medicamentos</div>
+      </div>
+      <div class="bloco-body">
+        <div class="campo">
+          <label>Você tem alguma dessas condições?<span class="obr">*</span></label>
+          <div class="desc">Marque todas que se aplicam</div>
+          <div class="check-group">
+            <label class="check-item"><input type="checkbox" name="condicoes" value="diabetes"> Diabetes tipo 2</label>
+            <label class="check-item"><input type="checkbox" name="condicoes" value="pre-diabetes"> Pré-diabetes / resistência à insulina</label>
+            <label class="check-item"><input type="checkbox" name="condicoes" value="pressao"> Pressão alta</label>
+            <label class="check-item"><input type="checkbox" name="condicoes" value="colesterol"> Colesterol alto</label>
+            <label class="check-item"><input type="checkbox" name="condicoes" value="gastrite"> Gastrite ou refluxo</label>
+            <label class="check-item"><input type="checkbox" name="condicoes" value="hipotireoidismo"> Hipotireoidismo</label>
+            <label class="check-item"><input type="checkbox" name="condicoes" value="sop"> Síndrome do ovário policístico</label>
+            <label class="check-item"><input type="checkbox" name="condicoes" value="fibromialgia"> Fibromialgia</label>
+            <label class="check-item"><input type="checkbox" name="condicoes" value="depressao-ansiedade"> Depressão ou ansiedade diagnosticada</label>
+            <label class="check-item"><input type="checkbox" name="condicoes" value="nenhuma"> Nenhuma dessas</label>
+          </div>
+        </div>
+        <div class="campo">
+          <label>Toma algum medicamento contínuo? Qual?</label>
+          <input type="text" name="medicamento" placeholder="Ex: metformina, losartana, levotiroxina...">
+        </div>
+        <div class="campo">
+          <label>Tem alergia ou intolerância alimentar?</label>
+          <div class="check-group">
+            <label class="check-item"><input type="checkbox" name="alergia" value="lactose"> Lactose</label>
+            <label class="check-item"><input type="checkbox" name="alergia" value="gluten"> Glúten</label>
+            <label class="check-item"><input type="checkbox" name="alergia" value="frutos-do-mar"> Frutos do mar</label>
+            <label class="check-item"><input type="checkbox" name="alergia" value="ovo"> Ovo</label>
+            <label class="check-item"><input type="checkbox" name="alergia" value="nenhuma"> Nenhuma</label>
+          </div>
+          <input type="text" name="alergia_outra" placeholder="Outra alergia? Escreva aqui" style="margin-top: 8px;">
+        </div>
+        <div class="campo">
+          <label>Qual é a sua fase hormonal?<span class="obr">*</span></label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="hormonal" value="menstrua" required> Ainda menstruo normalmente</label>
+            <label class="radio-item"><input type="radio" name="hormonal" value="perimenopausa"> Perimenopausa (irregular)</label>
+            <label class="radio-item"><input type="radio" name="hormonal" value="menopausa"> Menopausa (parou há menos de 2 anos)</label>
+            <label class="radio-item"><input type="radio" name="hormonal" value="pos-menopausa"> Pós-menopausa (parou há mais de 2 anos)</label>
+            <label class="radio-item"><input type="radio" name="hormonal" value="trh"> Uso reposição hormonal</label>
+          </div>
+        </div>
+        <div class="campo">
+          <label>Já fez cirurgia bariátrica?</label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="bariatrica" value="nao"> Não</label>
+            <label class="radio-item"><input type="radio" name="bariatrica" value="sim"> Sim</label>
+          </div>
+          <input type="text" name="bariatrica_detalhes" placeholder="Se sim, qual e quando?" style="margin-top: 8px;">
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO 5 -->
+    <div class="bloco">
+      <div class="bloco-header">
+        <div class="bloco-num">5</div>
+        <div class="bloco-titulo">Movimento e Rotina</div>
+      </div>
+      <div class="bloco-body">
+        <div class="campo">
+          <label>Você pratica alguma atividade física?<span class="obr">*</span></label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="exercicio" value="nenhuma" required> Nenhuma</label>
+            <label class="radio-item"><input type="radio" name="exercicio" value="caminhada-leve"> Caminhada leve (1-2x por semana)</label>
+            <label class="radio-item"><input type="radio" name="exercicio" value="caminhada-regular"> Caminhada regular (3-5x por semana)</label>
+            <label class="radio-item"><input type="radio" name="exercicio" value="academia"> Academia ou musculação</label>
+            <label class="radio-item"><input type="radio" name="exercicio" value="danca-yoga"> Dança, yoga, pilates ou similar</label>
+          </div>
+          <input type="text" name="exercicio_outro" placeholder="Outra atividade? Escreva aqui" style="margin-top: 8px;">
+        </div>
+        <div class="campo">
+          <label>Qual é o seu principal obstáculo para se exercitar?</label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="obstaculo_exercicio" value="dor"> Dor no joelho, coluna ou articulações</label>
+            <label class="radio-item"><input type="radio" name="obstaculo_exercicio" value="tempo"> Falta de tempo</label>
+            <label class="radio-item"><input type="radio" name="obstaculo_exercicio" value="motivacao"> Falta de motivação</label>
+            <label class="radio-item"><input type="radio" name="obstaculo_exercicio" value="nao-gosta"> Não gosto de exercício</label>
+            <label class="radio-item"><input type="radio" name="obstaculo_exercicio" value="saude"> Problema de saúde que limita</label>
+            <label class="radio-item"><input type="radio" name="obstaculo_exercicio" value="nenhum"> Nenhum — já me exercito</label>
+          </div>
+        </div>
+        <div class="campo">
+          <label>Como é o seu sono?<span class="obr">*</span></label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="sono" value="bem" required> Durmo bem (7-8h sem interrupção)</label>
+            <label class="radio-item"><input type="radio" name="sono" value="mal"> Durmo mal (acordo várias vezes)</label>
+            <label class="radio-item"><input type="radio" name="sono" value="insonia"> Demoro para dormir (insônia)</label>
+            <label class="radio-item"><input type="radio" name="sono" value="pouco"> Durmo pouco (menos de 6h)</label>
+            <label class="radio-item"><input type="radio" name="sono" value="depende"> Depende do dia</label>
+          </div>
+        </div>
+        <div class="campo">
+          <label>Qual é o seu nível de estresse atual?</label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="estresse" value="baixo"> Baixo (tranquila no geral)</label>
+            <label class="radio-item"><input type="radio" name="estresse" value="moderado"> Moderado (preocupações normais)</label>
+            <label class="radio-item"><input type="radio" name="estresse" value="alto"> Alto (estou sobrecarregada)</label>
+            <label class="radio-item"><input type="radio" name="estresse" value="muito-alto"> Muito alto (afeta meu dia a dia)</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO 6 -->
+    <div class="bloco">
+      <div class="bloco-header">
+        <div class="bloco-num">6</div>
+        <div class="bloco-titulo">Preferências e Orçamento</div>
+      </div>
+      <div class="bloco-body">
+        <div class="campo">
+          <label>Quanto tempo por dia você tem para preparar refeições?<span class="obr">*</span></label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="tempo_preparo" value="menos-15" required> Menos de 15 minutos</label>
+            <label class="radio-item"><input type="radio" name="tempo_preparo" value="15-30"> 15-30 minutos</label>
+            <label class="radio-item"><input type="radio" name="tempo_preparo" value="30-60"> 30 minutos a 1 hora</label>
+            <label class="radio-item"><input type="radio" name="tempo_preparo" value="mais-1h"> Mais de 1 hora</label>
+            <label class="radio-item"><input type="radio" name="tempo_preparo" value="alguem-cozinha"> Alguém cozinha para mim</label>
+          </div>
+        </div>
+        <div class="campo">
+          <label>Qual é o seu orçamento semanal para alimentação?</label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="orcamento" value="ate-100"> Até R$100</label>
+            <label class="radio-item"><input type="radio" name="orcamento" value="100-200"> R$100 a R$200</label>
+            <label class="radio-item"><input type="radio" name="orcamento" value="200-300"> R$200 a R$300</label>
+            <label class="radio-item"><input type="radio" name="orcamento" value="mais-300"> Mais de R$300</label>
+          </div>
+        </div>
+        <div class="campo">
+          <label>Tem algum alimento que você NÃO come de jeito nenhum?</label>
+          <textarea name="nao_come" placeholder="Ex: peixe, fígado, berinjela..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCO 7 -->
+    <div class="bloco">
+      <div class="bloco-header">
+        <div class="bloco-num">7</div>
+        <div class="bloco-titulo">Seu Objetivo</div>
+      </div>
+      <div class="bloco-body">
+        <div class="campo">
+          <label>Quantos quilos gostaria de perder?<span class="obr">*</span></label>
+          <div class="radio-group">
+            <label class="radio-item"><input type="radio" name="meta_peso" value="3-5kg" required> 3-5 kg</label>
+            <label class="radio-item"><input type="radio" name="meta_peso" value="5-10kg"> 5-10 kg</label>
+            <label class="radio-item"><input type="radio" name="meta_peso" value="10-15kg"> 10-15 kg</label>
+            <label class="radio-item"><input type="radio" name="meta_peso" value="15-20kg"> 15-20 kg</label>
+            <label class="radio-item"><input type="radio" name="meta_peso" value="mais-20kg"> Mais de 20 kg</label>
+            <label class="radio-item"><input type="radio" name="meta_peso" value="sentir-melhor"> Não sei — quero me sentir melhor</label>
+          </div>
+        </div>
+        <div class="campo">
+          <label>O que mais te incomoda hoje no seu corpo?</label>
+          <textarea name="incomoda" placeholder="Fale com sinceridade — isso ajuda a personalizar o seu plano"></textarea>
+        </div>
+        <div class="campo">
+          <label>Se pudesse mudar UMA coisa no seu corpo em 30 dias, o que seria?</label>
+          <textarea name="uma_coisa" placeholder="A resposta mais importante do formulário — pense com calma"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENVIAR -->
+    <div class="submit-section">
+      <button type="submit" class="submit-btn">Enviar Minhas Respostas 🌿</button>
+      <p class="submit-note">
+        Suas respostas são confidenciais e serão usadas exclusivamente para criar o seu plano personalizado.<br>
+        Em até 72 horas você receberá o PDF no e-mail informado acima.
+      </p>
+    </div>
+
+  </form>
+
+  <!-- MENSAGEM DE SUCESSO -->
+  <div class="sucesso" id="sucesso">
+    <h2>Recebemos suas respostas! 🌿</h2>
+    <p>O Kim Dojun já está trabalhando no seu plano personalizado.<br>Em até <strong>72 horas</strong> você receberá o PDF no seu e-mail com o seu nome na capa.<br><br>Enquanto isso, acompanhe o <strong>@KimDojun</strong> no YouTube, Instagram e Facebook para dicas diárias.</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  @KimDojun · YouTube · Instagram · Facebook
+</div>
+
+<script>
+  const form = document.getElementById('formConsultoria');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.querySelector('.intro-box').style.display = 'none';
+        document.getElementById('sucesso').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    } catch (err) {
+      alert('Houve um erro ao enviar. Por favor tente novamente.');
+    }
+  });
+</script>
+
+</body>
+</html>
